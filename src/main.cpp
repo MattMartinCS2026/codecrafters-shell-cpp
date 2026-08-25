@@ -2,7 +2,8 @@
 #include <string>
 
 void eval(std::string command) {
-  std::cout << command << ": command not found\n";
+  if (command == "exit") {std::exit(EXIT_SUCCESS);}
+  else {std::cout << command << ": command not found\n";}
 }
 
 int main() {
