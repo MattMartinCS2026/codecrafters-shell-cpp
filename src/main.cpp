@@ -49,9 +49,9 @@ void eval(command com) {
     }
     default:
       if (com.parameters != "") {
-        std::cout << com.command << " " << com.parameters << ": command not found" << std::endl;
+        std::cout << com.command << " " << com.parameters << ": not found" << std::endl;
       } else {
-        std::cout << com.command << ": command not found" << std::endl;
+        std::cout << com.command << ": not found" << std::endl;
       }
   }
 }
