@@ -9,9 +9,9 @@ const std::unordered_map<std::string, int> COMMAND_MAP = {
 };
 
 struct command {
-  int code;
-  std::string command;
-  std::string parameters;
+  int code = 0;
+  std::string command = "";
+  std::string parameters = "";
 };
 
 auto parse(std::string input, command& com) {
@@ -39,7 +39,11 @@ void eval(command com) {
       break;
     }
     default:
-      std::cout << com.command << " " << com.parameters << ": command not found" << std::endl;
+      if (com.parameters != "") {
+        std::cout << com.command << " " << com.parameters << ": command not found" << std::endl;
+      } else {
+        std::cout << com.command << ": command not found" << std::endl;
+      }
   }
 }
 
