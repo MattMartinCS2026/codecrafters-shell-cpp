@@ -41,7 +41,7 @@ void eval(command com) {
     case 3: {
       auto command_code = COMMAND_MAP.find(com.parameters);
       if (command_code == COMMAND_MAP.end()) {
-        std::cout << com.parameters << ": command not found" << std::endl;
+        std::cout << com.parameters << ": not found" << std::endl;
       } else {
         std::cout << com.parameters << " is a shell builtin" << std::endl;
       }
@@ -49,9 +49,9 @@ void eval(command com) {
     }
     default:
       if (com.parameters != "") {
-        std::cout << com.command << " " << com.parameters << ": not found" << std::endl;
+        std::cout << com.command << " " << com.parameters << ": command not found" << std::endl;
       } else {
-        std::cout << com.command << ": not found" << std::endl;
+        std::cout << com.command << ": command not found" << std::endl;
       }
   }
 }
