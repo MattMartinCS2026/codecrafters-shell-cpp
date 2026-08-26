@@ -5,7 +5,8 @@
 
 const std::unordered_map<std::string, int> COMMAND_MAP = {
   {"exit", 1},
-  {"echo", 2}
+  {"echo", 2},
+  {"type", 3}
 };
 
 struct command {
@@ -34,8 +35,16 @@ void eval(command com) {
     case 1:
       std::exit(EXIT_SUCCESS);
       break;
-    case 2: {
+    case 2:
       std::cout << com.parameters << std::endl;
+      break;
+    case 3: {
+      auto command_code = COMMAND_MAP.find(com.parameters);
+      if (command_code == COMMAND_MAP.end()) {
+        std::cout << com.parameters << ": command not found" << std::endl;
+      } else {
+        std::cout << com.parameters << " is a shell builtin" << std::endl;
+      }
       break;
     }
     default:
