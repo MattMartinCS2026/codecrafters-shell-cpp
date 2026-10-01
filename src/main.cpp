@@ -32,21 +32,30 @@ std::string find_file(std::string file_name) {
   std::string env = getenv("PATH");
   std::filesystem::path directory_path;
   size_t delimiter;
+  std::string curr_file;
+  size_t file_delimiter;
 
-  delimiter = env.find(PATH_LIST_SEPARATOR);
-  directory_path = env.substr(0, delimiter);
-
-  std::cout << "Dir: " << directory_path << "\nExists? " << exists(directory_path) << "\nIs dir? " << is_directory(directory_path) << std::endl;
-  std::cout << "Current Dir: " << std::filesystem::current_path() << std::endl;
-
-  if (exists(directory_path) && is_directory(directory_path)) {
-    for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(directory_path)) {
-      std::cout << "File: " << entry.path() << std::endl;
+  while (true) {
+    delimiter = env.find(PATH_LIST_SEPARATOR);
+    directory_path = env.substr(0, delimiter);
+    
+    if (exists(directory_path) && is_directory(directory_path)) {
+      for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(directory_path)) {
+        file_delimiter = std::string(entry.path()).rfind("/");
+        curr_file = std::string(entry.path()).substr(file_delimiter + 1);
+        if (curr_file == file_name) {
+          return entry.path();
+        }
+      }
     }
-    return "somewhere";
-  } else {
-    return "";
+
+    if (env.find(PATH_LIST_SEPARATOR) == std::string::npos) {
+      break;
+    }
+    env = env.substr(delimiter + 1);
   }
+
+  return "";
 }
 
 /* 
