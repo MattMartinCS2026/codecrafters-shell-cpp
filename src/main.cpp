@@ -44,7 +44,7 @@ std::string find_file(std::string file_name) {
       for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(directory_path)) {
         file_delimiter = std::string(entry.path()).rfind("/");
         curr_file = std::string(entry.path()).substr(file_delimiter + 1);
-        if (curr_file == file_name && !access(curr_file.c_str(), X_OK)) {
+        if (curr_file == file_name && !access(entry.path().c_str(), X_OK)) {
           return entry.path();
         }
       }
