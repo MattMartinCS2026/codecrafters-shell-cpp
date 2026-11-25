@@ -109,7 +109,7 @@ void eval(command com) {
         int pid = fork();
         if (pid = 0) {
           char *args[]={path.data(), NULL};
-          execvp(args[0], args)
+          execvp(args[0], args);
         }
       } else {
         if (com.parameters != "") {
