@@ -104,11 +104,17 @@ void eval(command com) {
       break;
     }
     default:
-      if (com.parameters != "") {
-        std::cout << com.command << " " << com.parameters << ": command not found" << std::endl;
+      std::string path = find_file(com.parameters);
+      if (path != "") {
+        std::system(path);
       } else {
-        std::cout << com.command << ": command not found" << std::endl;
+        if (com.parameters != "") {
+          std::cout << com.command << " " << com.parameters << ": command not found" << std::endl;
+        } else {
+          std::cout << com.command << ": command not found" << std::endl;
+        }
       }
+
   }
 }
 
