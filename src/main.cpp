@@ -106,7 +106,11 @@ void eval(command com) {
     default:
       std::string path = find_file(com.parameters);
       if (path != "") {
-        std::system(path);
+        int pid = fork()
+        if (pid = 0) {
+          char *args[]={path, NULL}
+          execvp(args[0], args)
+        }
       } else {
         if (com.parameters != "") {
           std::cout << com.command << " " << com.parameters << ": command not found" << std::endl;
@@ -114,7 +118,6 @@ void eval(command com) {
           std::cout << com.command << ": command not found" << std::endl;
         }
       }
-
   }
 }
 
