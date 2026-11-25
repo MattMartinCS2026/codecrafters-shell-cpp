@@ -108,7 +108,7 @@ void eval(command com) {
       if (path != "") {
         int pid = fork();
         if (pid = 0) {
-          char *args[]={path, NULL}
+          char *args[]={path.data(), NULL};
           execvp(args[0], args)
         }
       } else {
