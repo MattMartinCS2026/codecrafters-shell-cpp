@@ -121,11 +121,10 @@ void eval(command com) {
       break;
     }
     default:
-      std::string path = find_file(com.command);
-      if (path != "") {
+      if (true) {
         int pid = fork();
         if (pid = 0) {
-          char *args[]={path.data(), com.parameters.data()};
+          char *args[]={com.command.data(), com.parameters.data()};
           execvp(args[0], args);
         }
       } else {
