@@ -104,7 +104,7 @@ void eval(command com) {
       break;
     }
     default:
-      std::string path = find_file(com.command);
+      std::string path = find_file(com.parameters);
       if (path != "") {
         int pid = fork();
         if (pid = 0) {
