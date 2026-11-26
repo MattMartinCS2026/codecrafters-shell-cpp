@@ -27,6 +27,16 @@ struct command {
   std::string parameters = "";
 };
 
+
+char[]* to_args(std::string parameters) {
+  char *args[];
+  stringstream stream(parameters);
+  stringstream parameter;
+  while (getline(stream, parameter, ' ')) {
+    std::cout << '1' << std::endl;
+  }
+}
+
 /* 
   take in a potential PATH and search through it.  If its found, return the path, if not, return "".
 */
@@ -111,16 +121,13 @@ void eval(command com) {
       break;
     }
     default:
-      std::string path = find_file(com.parameters);
+      std::string path = find_file(com.parameters[0]);
       if (path != "") {
-        std::cout << "Command Code:" << com.code << std::endl;
-        std::cout << "Command:" << com.command << std::endl;
-        std::cout << "Parameters:" << com.parameters << std::endl;
-        /*int pid = fork();
+        int pid = fork();
         if (pid = 0) {
-          char *args[]={path.data(), NULL};
+          char *args[]={path.data(), com.parameters.data()};
           execvp(args[0], args);
-        } */
+        }
       } else {
         if (com.parameters != "") {
           std::cout << com.command << " " << com.parameters << ": command not found" << std::endl;
