@@ -17,7 +17,8 @@ constexpr char PATH_LIST_SEPARATOR = ':';
 const std::unordered_map<std::string, int> COMMAND_MAP = {
   {"exit", 1},
   {"echo", 2},
-  {"type", 3}
+  {"type", 3},
+  {"test", 99}
 };
 
 struct command {
@@ -103,14 +104,23 @@ void eval(command com) {
       }
       break;
     }
+    case 99: { // test
+      std::cout << "Command Code:" << com.code << std::endl;
+      std::cout << "Command:" << com.command << std::endl;
+      std::cout << "Parameters:" << com.parameters << std::endl;
+      break;
+    }
     default:
       std::string path = find_file(com.parameters);
       if (path != "") {
-        int pid = fork();
+        std::cout << "Command Code:" << com.code << std::endl;
+        std::cout << "Command:" << com.command << std::endl;
+        std::cout << "Parameters:" << com.parameters << std::endl;
+        /*int pid = fork();
         if (pid = 0) {
           char *args[]={path.data(), NULL};
           execvp(args[0], args);
-        }
+        } */
       } else {
         if (com.parameters != "") {
           std::cout << com.command << " " << com.parameters << ": command not found" << std::endl;
