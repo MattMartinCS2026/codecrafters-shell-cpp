@@ -28,14 +28,14 @@ struct command {
 };
 
 
-char[]* to_args(std::string parameters) {
+/* char[]* to_args(std::string parameters) {
   char *args[];
   stringstream stream(parameters);
   stringstream parameter;
   while (getline(stream, parameter, ' ')) {
     std::cout << '1' << std::endl;
   }
-}
+} */
 
 /* 
   take in a potential PATH and search through it.  If its found, return the path, if not, return "".
